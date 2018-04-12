@@ -46,7 +46,7 @@ class Scavenger extends Component {
                         onLeftIconButtonClick={this.openMenu}
                     />
 					
-					<Boxes index={0} />
+					<Boxes index={3} />
 					
                     <TEDMenu open={this.state.open} close={this.closeMenu} />
                 </div>

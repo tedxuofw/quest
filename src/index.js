@@ -9,7 +9,12 @@ import Scavenger from './pages/scavenger.js';
 class App extends React.Component {
 	render() {
 		return (
-			<Scavenger />
+			<BrowserRouter>
+				<Switch> 
+					<Route exact path='/' component={Scavenger}/>
+                    <Route path='/scavenger' component={Scavenger}/>
+                </Switch>
+			</BrowserRouter>
         );
 	}
 }
