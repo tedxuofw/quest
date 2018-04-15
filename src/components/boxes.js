@@ -7,16 +7,19 @@ import Modal from 'react-modal';
 class Boxes extends Component {
     
 	render() {
+		
+		var boxes = [];
+		for (var i = 0; i < this.props.total; i++) {
+			var s = this.props.index <= i ? (this.props.index != i ? 0 : 1) : 2;
+			boxes.push({state:s});
+		}
+		
 		return (
 			<div className={css(boxStyles.container)}>
-				<Box s={this.props.index <= 0 ? (this.props.index != 0 ? 0 : 1) : 2} />
-				<Box s={this.props.index <= 1 ? (this.props.index != 1 ? 0 : 1) : 2} />
-				<Box s={this.props.index <= 2 ? (this.props.index != 2 ? 0 : 1) : 2} />
-				<Box s={this.props.index <= 3 ? (this.props.index != 3 ? 0 : 1) : 2} />
-				<Box s={this.props.index <= 4 ? (this.props.index != 4 ? 0 : 1) : 2} />
-				<Box s={this.props.index <= 5 ? (this.props.index != 5 ? 0 : 1) : 2} />
-				<Box s={this.props.index <= 6 ? (this.props.index != 6 ? 0 : 1) : 2} />
-				<Box s={this.props.index <= 7 ? (this.props.index != 7 ? 0 : 1) : 2} />
+				{
+					boxes.map((box, i) =>
+					<Box s={box.state} key={i} />)
+				}
 			</div>
 		);
 	}
@@ -45,7 +48,8 @@ class Box extends Component {
 
 const boxStyles = StyleSheet.create({
 	container: {
-		marginTop:'50px',
+		position:'absolute',
+		marginTop:'500px',
 	},
 	singlecontainer: {
 		position:'relative',
