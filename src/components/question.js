@@ -8,7 +8,7 @@ class Question extends Component {
 			<div className={css(styles.container)}>
 				<p className={css(styles.title)}>{this.props.title}</p>
 				<p className={css(styles.description)}>{this.props.description}</p>
-				<Input key={this.props.keyword} />
+				<Input keyword={this.props.keyword} next={this.props.next}/>
 			</div>
 		);
 	}
@@ -24,8 +24,9 @@ class Input extends Component {
 
 	handleChange(event) {
 		this.setState({value: event.target.value});
-		if (this.state.value == this.props.key) {
-			
+		if (event.target.value == this.props.keyword) {
+			this.props.next();
+			this.setState({value: ""});
 		}
 	}
 	
@@ -49,16 +50,16 @@ class Input extends Component {
 const styles = StyleSheet.create({
 	container: {
 		position:'absolute',
-		marginLeft:'50px',
+		marginLeft:'15vw',
 		marginTop:'20px',
 		marginBottom:'200px',
 	},
     title: {
-		fontSize:'40pt',
+		fontSize:'30pt',
 		fontFamily:'AvenirBlack',
 	},
 	description: {
-		fontSize:'20pt',
+		fontSize:'15pt',
 		fontFamily:'Avenir',
 		marginBottom:'100px',
 	},
@@ -66,11 +67,12 @@ const styles = StyleSheet.create({
 		border:'none',
 	},
 	input: {
-		fontSize:'17pt',
+		fontSize:'12pt',
 		fontFamily:'Avenir',
 		fontStyle:'italic',
 		border:'none',
-		marginLeft:'50px',
+		marginLeft:'5vw',
+		width:'60vw',
 	},
 });
 

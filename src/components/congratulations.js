@@ -18,9 +18,10 @@ class Congratulations extends Component {
 const styles = StyleSheet.create({
 	container: {
 		position:'absolute',
-		marginLeft:'50px',
+		marginLeft:'10vw',
 		marginTop:'100px',
 		marginBottom:'200px',
+		width:'80vw',
 	},
     title: {
 		fontSize:'20pt',

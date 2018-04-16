@@ -10,12 +10,12 @@ import Congratulations from '../components/congratulations';
 import Question from '../components/question';
 import TEDMenu from '../components/ted-menu.js';
 
-const questions = 	[ 	{title:"Test", description:"ashfajgagaba", keyword:"1234", },
-						{title:"Test2", description:"agagasdgasfhasfhasfhgag", keyword:"", },
-						{title:"Test3", description:"sadgasgdagasgagasgsa", keyword:"", },
-						{title:"Test4", description:"ahahajahfagfaga", keyword:"", },
-						{title:"Test5", description:"ahfabsfgas ga", keyword:"", },
-						{title:"Test6", description:"gasgag asdgaay", keyword:"", }
+const questions = 	[ 	{title:"Test1", description:"answer:1234", keyword:"1234", },
+						{title:"Test2", description:"answer:2345", keyword:"2345", },
+						{title:"Test3", description:"answer:3456", keyword:"3456", },
+						{title:"Test4", description:"answer:4567", keyword:"4567", },
+						{title:"Test5", description:"answer:5678", keyword:"5678", },
+						{title:"Test6", description:"answer:6789", keyword:"6789", }
 					];
 
 class Scavenger extends Component {
@@ -51,7 +51,7 @@ class Scavenger extends Component {
 			var question = questions[this.state.index];
 			content = (
 				<div>
-					<Question title={question.title} description={question.description} keyword={question.keyword} />
+					<Question title={question.title} description={question.description} keyword={question.keyword} next = {this.increment}/>
 					<Boxes total={questions.length} index={this.state.index} />
 				</div>);
 		} else {
