@@ -10,20 +10,29 @@ import Congratulations from '../components/congratulations';
 import Question from '../components/question';
 import TEDMenu from '../components/ted-menu.js';
 
-const questions = 	[ 	{title:"Test1", description:"answer:1234", keyword:"1234", },
-						{title:"Test2", description:"answer:2345", keyword:"2345", },
-						{title:"Test3", description:"answer:3456", keyword:"3456", },
-						{title:"Test4", description:"answer:4567", keyword:"4567", },
-						{title:"Test5", description:"answer:5678", keyword:"5678", },
-						{title:"Test6", description:"answer:6789", keyword:"6789", }
+const questions = 	[ 	{question:"answer:1234", keyword:"1234", },
+						{question:"answer:2345", keyword:"2345", },
+						{question:"answer:3456", keyword:"3456", },
+						{question:"answer:4567", keyword:"4567", },
+						{question:"answer:5678", keyword:"5678", },
+						{question:"answer:6789", keyword:"6789", }
 					];
+					
+const cacheKey = 'index';
 
 class Scavenger extends Component {
     constructor() {
         super();
+		
+		var i = 0;
+		if (localStorage[cacheKey] != undefined){
+			i = parseInt(localStorage[cacheKey]);
+		}
+		console.log(i);
+		
         this.state = {
             open: false,
-			index: 0,
+			index: i,
         };
         
         this.openMenu = this.openMenu.bind(this);
@@ -41,6 +50,7 @@ class Scavenger extends Component {
 	
 	increment() {
 		this.setState({ index: this.state.index+1 });
+		localStorage[cacheKey] = '' + (this.state.index+1);
 	};
     
 	render() {
@@ -51,7 +61,7 @@ class Scavenger extends Component {
 			var question = questions[this.state.index];
 			content = (
 				<div>
-					<Question title={question.title} description={question.description} keyword={question.keyword} next = {this.increment}/>
+					<Question question={question.question} keyword={question.keyword} next = {this.increment}/>
 					<Boxes total={questions.length} index={this.state.index} />
 				</div>);
 		} else {
