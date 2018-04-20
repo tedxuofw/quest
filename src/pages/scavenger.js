@@ -9,7 +9,6 @@ import $ from 'jquery';
 import Boxes from '../components/boxes';
 import Congratulations from '../components/congratulations';
 import Question from '../components/question';
-import Notification from '../components/notification';
 import TEDMenu from '../components/ted-menu.js';
 
 const questions = 	[ 	{question:"answer:1234", keyword:"1234", },
@@ -163,13 +162,13 @@ class Scavenger extends Component {
 const styles = StyleSheet.create({
 	curtain: {
 		position:'absolute',
-		marginTop:'75vh',
+		marginTop:'67vh',
 		width:'100vw',
 		backgroundColor:'rgba(255, 255, 255, 1)'
 	},
 	container: {
 		position:'absolute',
-		marginTop:'75vh',
+		marginTop:'67vh',
 		width:'100vw',
 		textAlign:'left',
 		backgroundColor:'rgba(230, 43, 37, 1)'
