@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import $ from 'jquery';
+
 
 class Question extends Component {
+	
 	render() {
+		
 		return (
 			<div className={css(styles.container)}>
 				<div className={css(styles.img)} />
-				<p className={css(styles.question)}>{this.props.question}</p>
-				<Input keyword={this.props.keyword} next={this.props.next}/>
+				<p className={css(styles.question)} id="text" >{this.props.question}</p>
+				<Input keyword={this.props.keyword} next={this.props.next} incorrect={this.props.incorrect}/>
 			</div>
 		);
 	}
@@ -22,16 +26,30 @@ class Input extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-
+	
 	handleChange(event) {
 		this.setState({value: event.target.value});
 		
 	}
 	
 	handleSubmit(event) {
-		if (this.state.value == this.props.keyword) {
-			this.props.next();
+		var next = this.props.next;
+		if (this.state.value === this.props.keyword) {
 			this.setState({value: ""});
+			$("#text").animate({
+				width:'toggle',
+			}, {duration:250, queue:false, complete:function() {
+				
+				next();
+				
+				$("#text").animate({
+					width:'toggle',
+				}, 250, function() {
+					// Animation complete.
+				});
+			}});
+		} else {
+			this.props.incorrect();
 		}
 	}
 	
