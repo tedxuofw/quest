@@ -40,6 +40,7 @@ class Scavenger extends Component {
         this.closeMenu = this.closeMenu.bind(this);
 		this.increment = this.increment.bind(this);
 		this.incorrect = this.incorrect.bind(this);
+		this.correct = this.correct.bind(this);
 		this.notification = this.notification.bind(this);
     }
 	
@@ -61,33 +62,37 @@ class Scavenger extends Component {
 	};
 	
 	incorrect() {
+		this.notification();
 		this.setState({ correct: false });
+	}
+	
+	correct() {
+		this.setState({ correct: true });
 		this.notification();
 	}
 	
 	increment() {
-		this.setState({ index: this.state.index+1, correct: true });
+		this.setState({ index: this.state.index+1 });
 		localStorage[cacheKey] = '' + (this.state.index+1);
-		this.notification();
 	};
 	
 	notification() {
 		
 		$("#curtain").animate({
 			opacity:1,
-		}, 1);
+		}, {duration:250, queue:false});
 		$("#notification").animate({
 			opacity:1,
-		}, 1);
+		}, {duration:250, queue:false});
 		
 		$("#curtain").animate({
-			height:'toggle',
+			height:'0%',
 		}, {duration:250, queue:false, complete:function() {
 			$("#curtain").animate({
 				opacity:'1'
 			}, 4000, function() {
 				$("#curtain").animate({
-					height:'toggle',
+					height:'100%',
 				}, 250, function() {
 					$("#curtain").animate({
 						opacity:0,
@@ -114,7 +119,9 @@ class Scavenger extends Component {
 			var question = questions[this.state.index];
 			content = (
 				<div>
-					<Question question={question.question} keyword={question.keyword} next={this.increment} incorrect={this.incorrect} />
+					<Question question={question.question} keyword={question.keyword} 
+									next={this.correct} incorrect={this.incorrect} 
+									increment={this.increment}/>
 					<Boxes total={questions.length} index={this.state.index} />
 					
 					<div className={css(styles.container)} id="notification" style={{height:'15vh',}}>

@@ -10,9 +10,10 @@ class Question extends Component {
 		
 		return (
 			<div className={css(styles.container)}>
-				<div className={css(styles.img)} />
-				<p className={css(styles.question)} id="text" >{this.props.question}</p>
-				<Input keyword={this.props.keyword} next={this.props.next} incorrect={this.props.incorrect}/>
+				<div className={css(styles.img)} id="image"/>
+				<p className={css(styles.question)} id="question" >{this.props.question}</p>
+				<Input keyword={this.props.keyword} next={this.props.next} 
+							incorrect={this.props.incorrect} increment={this.props.increment}/>
 			</div>
 		);
 	}
@@ -33,17 +34,37 @@ class Input extends Component {
 	}
 	
 	handleSubmit(event) {
-		var next = this.props.next;
+		var increment = this.props.increment;
 		if (this.state.value === this.props.keyword) {
-			this.setState({value: ""});
-			$("#text").animate({
-				width:'toggle',
+			this.setState({value: ""});		
+			this.props.next();
+			
+			$("#image").animate({
+				left:'500px',
 			}, {duration:250, queue:false, complete:function() {
 				
-				next();
+				$("#image").animate({
+					left:'-500px',
+				}, 0);
 				
-				$("#text").animate({
-					width:'toggle',
+				increment();
+				
+				$("#image").animate({
+					left:'0px',
+				}, 250, function() {
+					// Animation complete.
+				});
+			}});
+			$("#question").animate({
+				left:'500px',
+			}, {duration:250, queue:false, complete:function() {
+				
+				$("#question").animate({
+					left:'-500px',
+				}, 0);
+				
+				$("#question").animate({
+					left:'0px',
 				}, 250, function() {
 					// Animation complete.
 				});
@@ -65,7 +86,8 @@ class Input extends Component {
 						className={css(styles.input)}
 					/>
 				</label>
-				<input type="button" onClick={this.handleSubmit} value="✔" className={css(styles.submitButton)} />
+				<input type="button" onClick={this.handleSubmit} value="✔" className={css(styles.submitButton)} 
+						style={{WebkitAppearance: 'none', borderRadius: '0',}}/>
 			</form>
 		);
 	};
@@ -79,12 +101,13 @@ const styles = StyleSheet.create({
 		marginBottom:'200px',
 	},
     img: {
-		
+		position:'relative',
 		width:'70vw',
 		height:'25vh',
 		backgroundColor:'#f5f5f5',
 	},
 	question: {
+		position:'relative',
 		fontSize:'19pt',
 		fontFamily:'AvenirBlack',
 		marginBottom:'50px',
