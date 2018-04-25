@@ -72,8 +72,8 @@ class Scavenger extends Component {
 	}
 	
 	increment() {
-		this.setState({ index: this.state.index+1 });
 		localStorage[cacheKey] = '' + (this.state.index+1);
+		this.setState({ index: this.state.index+1 });
 	};
 	
 	notification() {
