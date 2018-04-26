@@ -82,15 +82,16 @@ class Input extends Component {
 						type="text" 
 						value={this.state.value} 
 						onChange={this.handleChange} 
-						placeholder="Type in the keyword here" 
+						placeholder="Type in keyword here" 
 						className={css(styles.input)}
 					/>
 				</label>
-				<input type="button" onClick={this.handleSubmit} value="✔" className={css(styles.submitButton)} 
+				<input type="button" onClick={this.handleSubmit} value="ok" className={css(styles.submitButton)} 
 						style={{WebkitAppearance: 'none', borderRadius: '0',}}/>
 			</form>
 		);
 	};
+	//"✔"
 }
 
 const styles = StyleSheet.create({
