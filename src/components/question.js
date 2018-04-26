@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
 		border:'none',
 		fontFamily:'Avenir',
 		fontSize:'15pt',
+		textAlign:'center',
 	},
 });
 
