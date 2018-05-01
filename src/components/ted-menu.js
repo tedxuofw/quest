@@ -45,13 +45,13 @@ class TEDMenu extends Component {
                 <center>
 
                 <div className={css(styles.container)}>
-                    <Link className={css(styles.link)} to='/'>
+                    <a className={css(styles.link)} href='//live.tedxuofw.com'>
                         <div>Live Schedule</div>
-                    </Link>
-                    <Link className={css(styles.link)} to='/speakers'>
+                    </a>
+                    <a className={css(styles.link)} href='//live.tedxuofw.com/speakers'>
                         <div>Speakers</div>
-                    </Link>
-                    <Link className={css(styles.link)} to='/#/scavenger'>
+                    </a>
+                    <Link className={css(styles.link)} to='/'>
                         <div>Scavenger Hunt</div>
                     </Link>
                 </div>

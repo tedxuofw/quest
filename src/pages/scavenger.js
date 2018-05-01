@@ -11,12 +11,12 @@ import Congratulations from '../components/congratulations';
 import Question from '../components/question';
 import TEDMenu from '../components/ted-menu.js';
 
-const questions = 	[ 	{question:"answer:1234", keyword:"1234", },
-						{question:"answer:2345", keyword:"2345", },
-						{question:"answer:3456", keyword:"3456", },
-						{question:"answer:4567", keyword:"4567", },
-						{question:"answer:5678", keyword:"5678", },
-						{question:"answer:6789", keyword:"6789", }
+const questions = 	[ 	{question:"answer:1234", keyword:"1234", img:"/resources/image.png", },
+						{question:"answer:2345", keyword:"2345", img:"/resources/image.png", },
+						{question:"answer:3456", keyword:"3456", img:"/resources/image.png", },
+						{question:"answer:4567", keyword:"4567", img:"/resources/image.png", },
+						{question:"answer:5678", keyword:"5678", img:"/resources/image.png", },
+						{question:"answer:6789", keyword:"6789", img:"/resources/image.png", }
 					];
 					
 const cacheKey = 'index';
@@ -119,7 +119,7 @@ class Scavenger extends Component {
 			var question = questions[this.state.index];
 			content = (
 				<div>
-					<Question question={question.question} keyword={question.keyword} 
+					<Question question={question.question} keyword={question.keyword} img={question.img}
 									next={this.correct} incorrect={this.incorrect} 
 									increment={this.increment}/>
 					<Boxes total={questions.length} index={this.state.index} />

@@ -10,7 +10,7 @@ class Question extends Component {
 		
 		return (
 			<div className={css(styles.container)}>
-				<div className={css(styles.img)} id="image"/>
+				<img className={css(styles.img)} id="image" src={this.props.img} />
 				<p className={css(styles.question)} id="question" >{this.props.question}</p>
 				<Input keyword={this.props.keyword} next={this.props.next} 
 							incorrect={this.props.incorrect} increment={this.props.increment}/>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     img: {
 		position:'relative',
 		width:'70vw',
-		height:'25vh',
+		height:'auto',
 		backgroundColor:'#f5f5f5',
 	},
 	question: {
