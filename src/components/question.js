@@ -64,19 +64,21 @@ class Question extends Component {
 		if (this.state.answered) {
 			return (
 			<div className={css(styles.container)} id="blurb" >
-				<p className={css(styles.blurb)} id="image"> {this.props.blurb} </p>
 				<form className={css(styles.inputcontainer)} onSubmit={this.next}>
 					<input type="button" onClick={this.next} value="Next Hint" className={css(styles.nextButton)} 
 							style={{WebkitAppearance: 'none', borderRadius: '0',}}/>
 				</form>
+				<p className={css(styles.blurb)} id="image"> {this.props.blurb} </p>
+				
 			</div>
 			);
 		} else {
 			return (
 				<div className={css(styles.container)} id="question">
-					<p className={css(styles.question)} >{this.props.question}</p>
 					<Input keyword={this.props.keyword} correct={this.correct} 
 							incorrect={this.props.incorrect} increment={this.props.increment}/>
+					<p className={css(styles.question)} >{this.props.question}</p>
+					
 				</div>
 			);
 		}
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
 		position:'relative',
 		fontSize:'12pt',
 		fontFamily:'Avenir',
-		marginBottom:'50px',
+		marginBottom:'20px',
 		maxHeight:'40vh',
 		overflowY:'scroll',
 		padding:'5%',
@@ -145,12 +147,14 @@ const styles = StyleSheet.create({
 		position:'relative',
 		fontSize:'15pt',
 		fontFamily:'AvenirBlack',
-		marginBottom:'50px',
+		marginBottom:'20px',
 		maxHeight:'50vh',
 		overflowY:'scroll',
 	},
 	inputcontainer: {
 		border:'none',
+		position:'absolute',
+		marginTop:'59vh',
 	},
 	input: {
 		fontSize:'12pt',
@@ -159,13 +163,13 @@ const styles = StyleSheet.create({
 		border:'none',
 		backgroundColor:'#f5f5f5',
 		width:'56vw',
-		height:'10vw',
+		height:'5vh',
 		paddingLeft:'2vw',
 		paddingRight:'2vw',
 	},
 	submitButton: {
 		width:'10vw',
-		height:'10vw',
+		height:'5vh',
 		backgroundColor:'rgba(230, 43, 37, 1)',
 		color:'white',
 		border:'none',

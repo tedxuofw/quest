@@ -51,7 +51,7 @@ class Box extends Component {
 const boxStyles = StyleSheet.create({
 	container: {
 		position:'absolute',
-		marginTop:'75vh',
+		marginTop:'71vh',
 	},
 	singlecontainer: {
 		position:'relative',

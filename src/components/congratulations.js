@@ -7,9 +7,9 @@ class Congratulations extends Component {
 		return (
 			<div className={css(styles.container)}>
 				<p className={css(styles.title)}>Congratulations!</p>
-				<p className={css(styles.description)}>You've completed the scavenger hunt.</p>
-				<p className={css(styles.description)}>Show this to the front desk to redeem your reward.</p>
-				<p className={css(styles.description)}>Thanks for participating!</p>
+				<p className={css(styles.description)}>You are on your way to greatness. As JFK once said: </p>
+				<p className={css(styles.description)}>We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard; because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one we intend to win, and the others, too.</p>
+				<p className={css(styles.description)}>Visit the help desk to claim your prize!</p>
 			</div>
 		);
 	}
