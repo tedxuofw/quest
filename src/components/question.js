@@ -5,41 +5,29 @@ import $ from 'jquery';
 
 
 class Question extends Component {
-	
-	render() {
-		
-		return (
-			<div className={css(styles.container)}>
-				<img className={css(styles.img)} id="image" src={this.props.img} />
-				<p className={css(styles.question)} id="question" >{this.props.question}</p>
-				<Input keyword={this.props.keyword} next={this.props.next} 
-							incorrect={this.props.incorrect} increment={this.props.increment}/>
-			</div>
-		);
-	}
-}
-
-class Input extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {value: ''};
+		if (this.props.keyword === "start") {
+			this.state = {answered:true};
+		} else {
+			this.state = {answered:false};
+		}
 		
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		this.correct = this.correct.bind(this);
+		this.next= this.next.bind(this);
 	}
 	
-	handleChange(event) {
-		this.setState({value: event.target.value});
-		
+	correct() {
+		this.setState({answered:true});
 	}
 	
-	handleSubmit(event) {
-		var increment = this.props.increment;
-		if (this.state.value === this.props.keyword) {
-			this.setState({value: ""});		
-			this.props.next();
+	next() {
+		this.props.increment();
+		this.setState({answered:false});
+		this.setState({value: ""});	
+		
 			
-			$("#image").animate({
+			/*$("#image").animate({
 				left:'500px',
 			}, {duration:250, queue:false, complete:function() {
 				
@@ -68,7 +56,49 @@ class Input extends Component {
 				}, 250, function() {
 					// Animation complete.
 				});
-			}});
+			}});*/
+	}
+	
+	render() {
+		
+		if (this.state.answered) {
+			return (
+			<div className={css(styles.container)} id="blurb" >
+				<p className={css(styles.blurb)} id="image"> {this.props.blurb} </p>
+				<form className={css(styles.inputcontainer)} onSubmit={this.next}>
+					<input type="button" onClick={this.next} value="Next Hint" className={css(styles.nextButton)} 
+							style={{WebkitAppearance: 'none', borderRadius: '0',}}/>
+				</form>
+			</div>
+			);
+		} else {
+			return (
+				<div className={css(styles.container)} id="question">
+					<p className={css(styles.question)} >{this.props.question}</p>
+					<Input keyword={this.props.keyword} correct={this.correct} 
+							incorrect={this.props.incorrect} increment={this.props.increment}/>
+				</div>
+			);
+		}
+	}
+}
+
+class Input extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {value: ''};
+		
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	
+	handleChange(event) {
+		this.setState({value: event.target.value});
+	}
+	
+	handleSubmit(event) {
+		if (this.state.value.toLowerCase() === this.props.keyword) {
+			this.props.correct();
 		} else {
 			this.props.incorrect();
 		}
@@ -98,20 +128,26 @@ const styles = StyleSheet.create({
 	container: {
 		position:'absolute',
 		marginLeft:'15vw',
-		marginTop:'15vw',
-		marginBottom:'200px',
+		marginRight:'15vw',
+		marginTop:'2vw',
+		maxHeight:'60vh',
 	},
-    img: {
+    blurb: {
 		position:'relative',
-		width:'70vw',
-		height:'auto',
-		backgroundColor:'#f5f5f5',
+		fontSize:'12pt',
+		fontFamily:'Avenir',
+		marginBottom:'50px',
+		maxHeight:'40vh',
+		overflowY:'scroll',
+		padding:'5%',
 	},
 	question: {
 		position:'relative',
-		fontSize:'19pt',
+		fontSize:'15pt',
 		fontFamily:'AvenirBlack',
 		marginBottom:'50px',
+		maxHeight:'50vh',
+		overflowY:'scroll',
 	},
 	inputcontainer: {
 		border:'none',
@@ -129,6 +165,16 @@ const styles = StyleSheet.create({
 	},
 	submitButton: {
 		width:'10vw',
+		height:'10vw',
+		backgroundColor:'rgba(230, 43, 37, 1)',
+		color:'white',
+		border:'none',
+		fontFamily:'Avenir',
+		fontSize:'15pt',
+		textAlign:'center',
+	},
+	nextButton: {
+		width:'70vw',
 		height:'10vw',
 		backgroundColor:'rgba(230, 43, 37, 1)',
 		color:'white',
